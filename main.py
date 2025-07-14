@@ -104,8 +104,13 @@ print(pd.Series(dec_rmses).describe())
 print("done")
 
 # As Random Forest Classifier is Doing Well we Will save that model
-joblib.dump(ran_reg,"model.pkl")
-print("Model Is Saved")
+# joblib.dump(ran_reg,"model.pkl")
+# print("Model Is Saved")
+
+# As model.pkl size is so big
+import gzip
+with gzip.open("model_compressed.pkl.gz", "wb") as f:
+    joblib.dump(ran_reg, f)
 
 
 test_set.to_csv("input.csv",index=False)
